@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: labelqcchecker-pro
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: RENDER
+        value: "true"
+      - key: TESSERACT_TIMEOUT
+        value: "20"
+      - key: PDF_DPI
+        value: "200"
+      - key: OCR_PSM
+        value: "6"
+      - key: OCR_FALLBACK_PSM
+        value: "11"
