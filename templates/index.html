@@ -1,1 +1,20 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Label QC Checker Pro</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07111f;color:#eaf2fb;font:14px Segoe UI,Arial,sans-serif}.top{height:64px;border-bottom:1px solid #23364d;background:#091522;display:flex;align-items:center;padding:0 28px}.brand{font-weight:800;font-size:18px}.logo{display:inline-block;width:21px;height:21px;border:5px solid #1686ff;border-right-color:#51d4ff;border-radius:50%;vertical-align:-5px;margin-right:9px}.wrap{max-width:1100px;margin:45px auto;padding:20px}.card{background:#0d1928;border:1px solid #25374d;border-radius:12px;padding:32px;box-shadow:0 18px 55px #0005}.hero h1{font-size:34px;margin:0 0 8px}.muted{color:#91a1b5}.row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}.upload{border:1px dashed #40536a;border-radius:9px;padding:28px;background:#0a1421}.upload h3{margin-top:0}.btn{margin-top:25px;background:#147df0;border:0;color:white;padding:13px 20px;border-radius:6px;font-weight:800;cursor:pointer}.error{color:#ff6770;background:#40171c;border:1px solid #71232b;padding:10px;border-radius:6px;margin:15px 0}.note{margin-top:18px;padding:12px;border:1px solid #29415c;border-radius:8px;background:#091523;color:#b8c8da}.formats{display:inline-flex;gap:7px;flex-wrap:wrap;margin-top:8px}.pill{padding:4px 8px;border-radius:20px;background:#15283d;color:#b9d6ef;font-size:12px}.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.check{padding:12px;background:#091522;border:1px solid #20354c;border-radius:8px}.check b{display:block;margin-bottom:4px}@media(max-width:700px){.row{grid-template-columns:1fr}.checks{grid-template-columns:1fr 1fr}.wrap{margin:20px auto;padding:12px}}
+</style></head>
+<body><header class="top"><div class="brand"><i class="logo"></i>Label QC Checker Pro</div></header>
+<main class="wrap"><div class="card"><h1>Line-by-Line Label QC</h1><p class="muted">Compare an approval/master label against one or more sample labels. The system checks every OCR line and reports MATCHED, CHANGED, MISSING and EXTRA.</p>
+{% if error %}<div class="error">{{error}}</div>{% endif %}
+<form method="post" action="{{url_for('compare')}}" enctype="multipart/form-data">
+<div class="row">
+<div class="upload"><h3>Approval / Master</h3><p class="muted">Approved reference document.</p><input type="file" name="approval" accept=".jpg,.jpeg,.png,.webp,.bmp,.tif,.tiff,.pdf" required><div class="formats"><span class="pill">JPG</span><span class="pill">PNG</span><span class="pill">WEBP</span><span class="pill">TIFF</span><span class="pill">PDF</span></div></div>
+<div class="upload"><h3>Sample Labels</h3><p class="muted">Upload one or more images or PDFs.</p><input type="file" name="samples" accept=".jpg,.jpeg,.png,.webp,.bmp,.tif,.tiff,.pdf" multiple required><div class="formats"><span class="pill">Images</span><span class="pill">Multi-page PDF</span></div></div>
+</div>
+<div class="checks"><div class="check"><b>1. OCR</b><span class="muted">Read each line</span></div><div class="check"><b>2. Align</b><span class="muted">Compare line order</span></div><div class="check"><b>3. Detect</b><span class="muted">Changed / missing / extra</span></div><div class="check"><b>4. Highlight</b><span class="muted">Show differences</span></div></div>
+<button class="btn">CHECK LINE BY LINE →</button></form>
+<div class="note"><b>OCR requirement:</b> Tesseract OCR must be installed on Windows. The app automatically searches common Tesseract locations. If it is installed elsewhere, set <code>TESSERACT_CMD</code> to the full <code>tesseract.exe</code> path.<br><br><b>PDF supported:</b> each PDF page is rendered to an image first, then OCR is performed page-by-page. The final report includes page number, line number, text, similarity and OCR confidence.</div>
+</div></main></body></html>
